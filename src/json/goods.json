@@ -1,0 +1,798 @@
+{
+  "recommend": {
+    "modTitle": "推荐",
+    "banner": [
+      "../src/assets/images/banner1.jpg", 
+      "../src/assets/images/banner2.jpg", 
+      "../src/assets/images/banner3.jpg" 
+    ],
+    "modCon": {
+      "provideGoods": {
+        "title": "品牌制造商直供",
+        "items": [
+          {
+            "id":"10001",
+            "name": "Nine West制造商",
+            "price": "199元起",
+            "imgSrc":"../src/assets/images/goods1.png",
+            "tagNew": "上新"
+          },
+          {
+            "id":"10002",
+            "name": "CK制造商",
+            "price": "25元起",
+            "imgSrc":"../src/assets/images/goods2.png"
+          },
+          {
+            "id":"10003",
+            "name": "Armani制造商",
+            "price": "89元起",
+            "imgSrc":"../src/assets/images/goods2.png"
+          },
+          {
+            "id":"10004",
+            "name": "新秀丽制造商",
+            "price": "49元起",
+            "imgSrc":"../src/assets/images/goods1.png"
+          }
+        ]
+      },
+      "newGoods": {
+        "title": "新品首发",
+        "items": [
+          {
+            "id":"10031",
+            "name": "拼色锁扣马鞍包",
+            "descript": "小巧优雅，内含容量",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods3.png"
+          },
+          {
+            "name": "晨曦渐变天丝四件套",
+            "descript": "气质简约渐变，清凉亲肤保湿",
+            "price": "￥599",
+            "imgSrc": "../src/assets/images/goods4.jpg",
+            "tagColor": "2色可选",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "满赠"
+              }
+            ]
+          },
+          {
+            "name": "拼色锁扣马鞍包",
+            "descript": "小巧优雅，内含容量",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods3.png"
+          },
+          {
+            "name": "晨曦渐变天丝四件套",
+            "descript": "气质简约渐变，清凉亲肤保湿",
+            "price": "￥599",
+            "imgSrc": "../src/assets/images/goods4.jpg",
+            "tagColor": "2色可选",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "满赠"
+              }
+            ]
+          }
+        ]
+      },
+      "hotGoods": {
+        "title": "人气推荐 · 好物精选",
+        "items": [
+          {
+            "name": "晨曦渐变天丝四件套",
+            "descript": "气质简约渐变，清凉亲肤保湿",
+            "price": "￥599",
+            "imgSrc": "../src/assets/images/goods4.jpg",
+            "tagColor": "2色可选",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "满赠"
+              }
+            ]
+          },
+          {
+            "name": "网易智造超静音变频直流风扇",
+            "descript": "1个月低至1度电，像自然风一样舒服",
+            "price": "￥399",
+            "imgSrc": "../src/assets/images/goods5.png"
+          },
+          {
+            "name": "晨曦渐变天丝四件套",
+            "descript": "气质简约渐变，清凉亲肤保湿",
+            "price": "￥599",
+            "imgSrc": "../src/assets/images/goods4.jpg",
+            "tagColor": "2色可选",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "满赠"
+              }
+            ]
+          },
+          {
+            "name": "网易智造超静音变频直流风扇",
+            "descript": "1个月低至1度电，像自然风一样舒服",
+            "price": "￥399",
+            "imgSrc": "../src/assets/images/goods5.png",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      },
+      "topicGoods": {
+        "title": "专题精选",
+        "items": [
+          {
+            "name": "上班族必囤速食清单",
+            "descript": "有它们就拥有24小时营业的小厨房",
+            "price": "16元起",
+            "imgSrc": "../src/assets/images/topic1.jpg"
+          },
+          {
+            "name": "夏日厨房清新法则",
+            "descript": "去除油腻的厨房清洁妙招",
+            "price": "7.9元起",
+            "imgSrc": "../src/assets/images/topic2.jpg"
+          }
+        ]
+      },
+      "liveGoods": {
+        "title": "居家好物",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "日式和风懒人沙发",
+            "descript": "随形承托，外套可拆洗",
+            "price": "￥599",
+            "imgSrc": "../src/assets/images/goods8.png",
+            "tagColor": "4色可选",
+            "tags": [
+              {
+                "class": "tag-yellow",
+                "name": "满额减"
+              }
+            ]
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      },
+      "fitGoods": {
+        "title": "配件好物",
+        "items": [
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "日式和风懒人沙发",
+            "descript": "随形承托，外套可拆洗",
+            "price": "￥599",
+            "imgSrc": "../src/assets/images/goods8.png",
+            "tagColor": "4色可选",
+            "tags": [
+              {
+                "class": "tag-yellow",
+                "name": "满额减"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "live": {
+    "modTitle": "居家",
+    "banner": "../src/assets/images/bannerLive.jpg",
+    "modCon": [
+      {
+        "title": "床品件套",
+        "littleTitle": "MUJI等品牌制造商出品",
+        "items": [
+          {
+            "name": "花漾初绽四件套",
+            "descript": "独家花漾设计，纯棉透气亲肤",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goodsLive1.jpg",
+            "tags": [
+              {
+                "class": "tag-lightyellow",
+                "name": "新品"
+              }
+            ]
+          },
+          {
+            "name": "唤自然·迷雾雨林四件套",
+            "descript": "甄选新疆棉，贡缎细密",
+            "price": "￥399",
+            "imgSrc": "../src/assets/images/goodsLive2.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "花漾初绽四件套",
+            "descript": "独家花漾设计，纯棉透气亲肤",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goodsLive3.jpg",
+            "tags": [
+              {
+                "class": "tag-lightyellow",
+                "name": "新品"
+              }
+            ]
+          },
+          {
+            "name": "唤自然·迷雾雨林四件套",
+            "descript": "甄选新疆棉，贡缎细密",
+            "price": "￥399",
+            "imgSrc": "../src/assets/images/goodsLive3.jpg",
+            "tagColor": "9色可选",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "被枕",
+        "littleTitle": "守护你的睡眠时光",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goodsLive11.png",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥390",
+            "imgSrc": "../src/assets/images/goodsLive12.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goodsLive11.png",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥390",
+            "imgSrc": "../src/assets/images/goodsLive12.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      }
+    ]
+  },
+  "part": {
+    "modTitle": "配件",
+    "banner": "../src/assets/images/bannerPart.jpg",
+    "modCon": [
+      {
+        "title": "行李箱",
+        "littleTitle": "轻奢行李箱陪你走天下",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "男士包袋",
+        "littleTitle": "MK制造商",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clothing": {
+    "modTitle": "服装",
+    "banner": "../src/assets/images/bannerClothing.jpg",
+    "modCon": [
+      {
+        "title": "T恤",
+        "littleTitle": "自在而潇洒的穿着感",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "衬衫",
+        "littleTitle": "细节讲究，合身剪裁",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          },
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "appliance": {
+    "modTitle": "电器",
+    "banner": "../src/assets/images/bannerAppliance.jpg",
+    "modCon": [
+      {
+        "title": "生活电器",
+        "littleTitle": "高性价比的智能小家电",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      },
+      {
+        "title": "厨房电器",
+        "littleTitle": "厨房里的省心小电器",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      }
+    ]
+  },
+  "wash": {
+    "modTitle": "洗护",
+    "banner": "../src/assets/images/bannerWash.jpg",
+    "modCon": [
+      {
+        "title": "纸品湿巾",
+        "littleTitle": "和风设计，温和清洁",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      },
+      {
+        "title": "家庭清洁",
+        "littleTitle": "洁净才能带来清爽心情",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      }
+    ]
+  },
+  "diet": {
+    "modTitle": "饮食",
+    "banner": "../src/assets/images/bannerDiet.jpg",
+    "modCon": [
+      {
+        "title": "糕点",
+        "littleTitle": "四季糕点，用心烘焙",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      },
+      {
+        "title": "小食",
+        "littleTitle": "原香鲜材，以小食之味，带来味蕾惊喜",
+        "items": [
+          {
+            "name": "全棉针织条纹四件套 新款",
+            "descript": "超柔针织棉，亲肤可裸睡",
+            "price": "￥299",
+            "imgSrc": "../src/assets/images/goods6.jpg",
+            "tags": [
+              {
+                "class": "tag-red",
+                "name": "爆品"
+              },{
+                "class": "tag-yellow",
+                "name": "加价购"
+              }
+            ]
+          },
+          {
+            "name": "跟我走·萌宠创意抱枕套",
+            "descript": "趣味萌宠设计，立体刺绣更生动",
+            "price": "￥39",
+            "imgSrc": "../src/assets/images/goods7.png",
+            "tagColor": "9色可选"
+          }
+        ]
+      }
+    ]
+  }
+}

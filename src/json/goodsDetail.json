@@ -1,0 +1,37 @@
+{
+  "10001": {
+    "imgSrc": [
+      "../src/assets/images/goods1.png",
+      "../src/assets/images/goods1.png"
+    ],
+    "name": "Paisley欧式天丝四件套",
+    "descript": "经典佩兹利纹，进口凉感天丝",
+    "price": "￥599",
+    "characteristic": [
+      {
+        "img": "../src/assets/images/6f4df85a589520086efe69f9446c97a0.jpg",
+        "txt": [
+          "兰精天丝",
+          "细腻绵柔"
+        ]
+      },
+      {
+        "img": "../src/assets/images/7e564aad4eb943ac982ae57844648ee6.jpg",
+        "txt": [
+          "佩兹利纹",
+          "经典大气"
+        ]
+      },
+      {
+        "img": "../src/assets/images/80f174e8a01b6bee60beaee0cb51be87.jpg",
+        "txt": [
+          "独立收纳",
+          "精美实用"
+        ]
+      }
+    ],
+    "userRating": [
+      
+    ]
+  }
+}
