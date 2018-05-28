@@ -3,7 +3,7 @@
     <a href=""><img :src="banner" alt=""></a>
     <section class="mt10" v-for="(item, index) in goods" :key="index">
       <a class="title" href="">{{item.title}}<p>{{item.littleTitle}}</p></a>
-      <Goods :goods='item' :class="'flex-item-2 descript-absolute'"></Goods>
+      <Goods :goods='item.items' :class="'flex-item-2 descript-absolute'"></Goods>
     </section>
     <gotop></gotop>
   </div>
@@ -25,23 +25,21 @@ export default {
     }
   },
   computed: {
-    ...mapState({commonData: state => state.commonData})
+    ...mapState({otherData: state => state.otherData})
   },
   created(){
     this.initData()
   },
   methods: {
     initData(){
-      this.$store.state.commonName = this.$route.query.name
-      this.$store.dispatch('getCommonData')
+      this.$store.state.otherDataName = this.$route.query.name
+      this.$store.dispatch('getOtherData')
     }
   },
   watch: {
-    commonData: function (value) {
-      if (value && value.modCon) {
+    otherData: function (value) {
+      if (value) {
         this.goods = value.modCon
-      }
-      if(value && value.banner) {
         this.banner = value.banner
       }
     },

@@ -1,6 +1,7 @@
 import {recommendData} from '../service/getData'
-import {commonData} from '../service/getData'
+import {otherData} from '../service/getData'
 import {goodsDetailData} from '../service/getData'
+import {searchResultData} from '../service/getData'
 
 export default {
   async getRecommendData({
@@ -10,12 +11,12 @@ export default {
     let res = await recommendData()
 		commit('RECOMMEND_GOODS', res)
   },
-  async getCommonData({
+  async getOtherData({
 		commit,
 		state
 	}) {
-    let res = await commonData(state.commonName)
-		commit('COMMON_GOODS', res)
+    let res = await otherData(state.otherDataName)
+		commit('OTHER_GOODS', res)
 	},
 	async getGoodsDetailData({
 		commit,
@@ -23,5 +24,12 @@ export default {
 	}) {
     let res = await goodsDetailData(state.goodsId)
 		commit('GOODS_DETAIL', res)
+	},
+	async getSearchResultData({
+		commit,
+		state
+	}) {
+    let res = await searchResultData()
+		commit('SEARCH_RESULT', res)
 	}
 }

@@ -1,0 +1,156 @@
+{"skuList": [
+  {
+    "calcPrice": 339,
+    "id": 1584091,
+    "itemSkuSpecValueList": [
+      {
+        "id": 1572010,
+        "skuId": 1584091,
+        "skuSpec": {
+          "id": 1559013,
+          "name": "颜色"
+        },
+        "skuSpecId": 1559013,
+        "skuSpecValue": {
+          "id": 1620058,
+          "skuSpecId": 1559013,
+          "value": "珊瑚粉"
+        },
+        "skuSpecValueId": 1620058
+      },
+      {
+        "id": 1572011,
+        "skuId": 1584091,
+        "skuSpec": {
+          "id": 1560010,
+          "name": "尺寸"
+        },
+        "skuSpecId": 1560010,
+        "skuSpecValue": {
+          "id": 1620057,
+          "skuSpecId": 1560010,
+          "value": "1.8m床"
+        },
+        "skuSpecValueId": 1620057
+      }
+    ],
+    "pic": "http://yanxuan.nosdn.127.net/c31cd118a0b151776007d26761a5a691.png"
+
+  },
+  {
+    "calcPrice": 339,
+    "id": 1584093,
+    "itemSkuSpecValueList": [
+      {
+        "id": 1572014,
+        "skuId": 1584093,
+        "skuSpec": {
+          "id": 1559013,
+          "name": "颜色"
+        },
+        "skuSpecId": 1559013,
+        "skuSpecValue": {
+          "id": 1619051,
+          "skuSpecId": 1559013,
+          "value": "风信蓝"
+        },
+        "skuSpecValueId": 1619051
+      },
+      {
+        "id": 1572015,
+        "skuId": 1584093,
+        "skuSpec": {
+          "firstHideFlag": false,
+          "id": 1560010,
+          "name": "尺寸",
+          "skuSpecValueList": [],
+          "type": 0
+        },
+        "skuSpecId": 1560010,
+        "skuSpecValue": {
+          "id": 1620057,
+          "picUrl": "",
+          "skuSpecId": 1560010,
+          "value": "1.8m床"
+        },
+        "skuSpecValueId": 1620057
+      }
+    ],
+   
+    "pic": "http://yanxuan.nosdn.127.net/58edd64adbe1cc27ca445b492a9dbb52.png"
+  },
+  {
+    "calcPrice": 299,
+    "id": 1584090,
+    "itemSkuSpecValueList": [
+      {
+        "id": 1572008,
+        "skuId": 1584090,
+        "skuSpec": {
+          "id": 1559013,
+          "name": "颜色"
+        },
+        "skuSpecId": 1559013,
+        "skuSpecValue": {
+          "id": 1620058,
+          "skuSpecId": 1559013,
+          "value": "珊瑚粉"
+        },
+        "skuSpecValueId": 1620058
+      },
+      {
+        "id": 1572009,
+        "skuId": 1584090,
+        "skuSpec": {
+          "id": 1560010,
+          "name": "尺寸"
+        },
+        "skuSpecId": 1560010,
+        "skuSpecValue": {
+          "id": 1619050,
+          "skuSpecId": 1560010,
+          "value": "1.5m床"
+        },
+        "skuSpecValueId": 1619050
+      }
+    ],
+    "pic": "http://yanxuan.nosdn.127.net/c31cd118a0b151776007d26761a5a691.png"
+  },
+  {
+    "calcPrice": 299,
+    "id": 1584092,
+    "itemSkuSpecValueList": [
+      {
+        "id": 1572012,
+        "skuId": 1584092,
+        "skuSpec": {
+          "id": 1559013,
+          "name": "颜色"
+        },
+        "skuSpecId": 1559013,
+        "skuSpecValue": {
+          "id": 1619051,
+          "skuSpecId": 1559013,
+          "value": "风信蓝"
+        },
+        "skuSpecValueId": 1619051
+      },
+      {
+        "id": 1572013,
+        "skuId": 1584092,
+        "skuSpec": {
+          "id": 1560010,
+          "name": "尺寸"
+        },
+        "skuSpecId": 1560010,
+        "skuSpecValue": {
+          "id": 1619050,
+          "skuSpecId": 1560010,
+          "value": "1.5m床"
+        },
+        "skuSpecValueId": 1619050
+      }
+    ],
+    "pic": "http://yanxuan.nosdn.127.net/58edd64adbe1cc27ca445b492a9dbb52.png"
+  }
+]}

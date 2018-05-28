@@ -45,6 +45,7 @@ body {
   background-color: #f4f4f4
   max-width 640px
   margin 0 auto
+  color #333
 }
 img {
   max-width 100%
@@ -170,9 +171,69 @@ img {
   justify-content center
   align-items center
   text-align center
+  font-size .6rem
   .info {
     flex-grow 1  
   } 
+}
+.flex-list {
+  background-color #fff
+  padding-left .5rem
+  & > li {
+    display flex
+    width 100%
+    padding .5rem .5rem .5rem 0
+    font-size .6rem
+    line-height 1.6
+    box-sizing border-box
+    &:not(:first-child) {
+      border-top 1px solid #d9d9d9
+    }
+    .info {
+      flex-grow 1  
+    }  
+    .key {
+      flex-shrink 0  
+    }
+    .iconfont {
+      color #7f7f7f
+      font-size .6rem
+    }
+  }
+}
+
+/*模块*/
+.mod {
+  background-color #fff
+  .mod-hd {
+    font-size .7rem
+    line-height 1
+    padding 1rem 0  
+    text-align center
+    position relative
+    &:before {
+      content: ''
+      display inline-block
+      width 6.5rem
+      height 1px
+      background-color #ccc
+      position absolute
+      top 0
+      bottom 0
+      left 0
+      right 0
+      margin auto
+    }
+    .mod-tit {
+      padding 0 .25rem
+      background-color #ffffff
+      position relative
+      z-index 2  
+    }
+  }  
+  .mod-bd {
+    padding .5rem  
+  }
 }
 
 /*按钮*/
@@ -301,7 +362,7 @@ img {
 .tag {
   display inline-block
   font-size .5rem
-  border-radius 1px
+  border-radius 2px
   line-height 1
   padding 1px .2rem
   text-align center

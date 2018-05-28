@@ -29,7 +29,9 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import Goods from 'components/goods.vue'
+
 export default {
   components: {
     Goods
@@ -37,61 +39,25 @@ export default {
   data() {
     return {
       sortBy: 'multi', // 筛选的条件
-      goods: {
-        "title": "搜索结果",
-        "littleTitle": "和风设计，温和清洁",
-        "items": [
-          {
-            "name": "全棉针织条纹四件套 新款",
-            "descript": "超柔针织棉，亲肤可裸睡",
-            "price": "￥299",
-            "imgSrc": "../src/assets/images/goods6.jpg",
-            "tags": [
-              {
-                "class": "tag-red",
-                "name": "爆品"
-              },{
-                "class": "tag-yellow",
-                "name": "加价购"
-              }
-            ]
-          },
-          {
-            "name": "跟我走·萌宠创意抱枕套",
-            "descript": "趣味萌宠设计，立体刺绣更生动",
-            "price": "￥39",
-            "imgSrc": "../src/assets/images/goods7.png",
-            "tagColor": "9色可选"
-          },
-          {
-            "name": "全棉针织条纹四件套 新款",
-            "descript": "超柔针织棉，亲肤可裸睡",
-            "price": "￥299",
-            "imgSrc": "../src/assets/images/goods6.jpg",
-            "tags": [
-              {
-                "class": "tag-red",
-                "name": "爆品"
-              },{
-                "class": "tag-yellow",
-                "name": "加价购"
-              }
-            ]
-          },
-          {
-            "name": "跟我走·萌宠创意抱枕套",
-            "descript": "趣味萌宠设计，立体刺绣更生动",
-            "price": "￥39",
-            "imgSrc": "../src/assets/images/goods7.png",
-            "tagColor": "9色可选"
-          }
-        ]
-      }
+      goods: {}
     }
+  },
+  computed: {
+    ...mapState({searchResultData: state => state.searchResultData})
+  },
+  created(){
+    this.$store.dispatch('getSearchResultData')
   },
   methods: {
     chooseSort(type){
       this.sortBy = type
+    }
+  },
+  watch: {
+    searchResultData: function (value) {
+      if (value) {
+        this.goods = value
+      }
     }
   }
 }

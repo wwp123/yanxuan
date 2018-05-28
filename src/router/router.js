@@ -9,7 +9,7 @@ import center from 'pages/center/center.vue'
 import search from 'pages/search/search.vue'
 import searchResult from 'pages/search/children/searchResult.vue'
 import recommend from 'pages/home/children/recommend.vue'
-import common from 'pages/home/children/common.vue'
+import other from 'pages/home/children/other.vue'
 import goodsDetail from 'pages/goodsDetail/goodsDetail.vue'
 
 Vue.use(VueRouter)
@@ -29,9 +29,9 @@ const router = new VueRouter({
             meta: { keepAlive: true }
         },
         {
-          //居家配件等
+          //其他商品
             path: 'list',
-            component: common
+            component: other
         }
       ]
     },

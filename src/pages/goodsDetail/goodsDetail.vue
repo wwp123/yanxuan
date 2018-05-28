@@ -8,37 +8,185 @@
         <router-link to="/cart" class="key"><i class="iconfont icon-gouwuche"></i></router-link>
       </div>
     </header>
-    <main>
+    <main v-show="isShowMain">
       <swiper :slides="goods.imgSrc"></swiper>
       <ul class="characteristic">
-        <li v-for="(item, index) in goods.characteristic" :key="index">
+        <li v-for="(item, index) in goods.characteristicList" :key="index">
           <div class="img">
-            <img :src="item.img" alt="">
+            <img :src="item.picUrl" alt="">
           </div>
           <div class="txt">
-            <P v-for="(txt, index) in item.txt" :key="index">{{txt}}</P>
+            <P v-for="(txt, index) in item.simpleDescList" :key="index">{{txt}}</P>
           </div>
         </li>
       </ul>
-      <div class="goods-info flex">
+      <section class="goods-info flex">
         <div class="info">
           <h2>{{goods.name}}</h2>
           <p class="descript">{{goods.descript}}</p>
-          <span class="price">{{goods.price}}</span>
+          <p class="price">￥{{goods.price}}</p>
+          <span v-if="goods.itemTagList" v-for="(tag, index) in goods.itemTagList" :key="index" class="tag tag-hollow">
+            {{tag}}<i class="iconfont icon-xiangyou"></i>
+          </span>
         </div>
         <div class="key">
-          <p class="num">54</p>
+          <p class="num">{{commentNum}}</p>
           <p>用户评价</p>
-          <span class="btn btn-small btn-7f7f7f">查看</span>
+          <span class="btn btn-small btn-7f7f7f" @click="toggleComment()">查看</span>
         </div>
-      </div>
+      </section>
+      <ul class="flex-list mt10">
+        <li @click="toggleSpec()">
+          <div class="info">{{activeSkuDes}}</div>
+          <div class="key"><i class="iconfont icon-xiangyou"></i></div>
+        </li>
+        <li>
+          <div class="info">积分：购买最高得{{pointNum}}积分</div>
+        </li>
+        <li @click="toggleService()">
+          <div class="key">服务：</div>
+          <div class="info">
+            <ul class="service-info dot-list">
+              <li v-for="(policy, index) in goods.policyList" :key="index">{{policy.title}}</li>
+            </ul>
+          </div>
+          <div class="key"><i class="iconfont icon-xiangyou"></i></div>
+        </li>
+      </ul>
+      <ul class="flex-list mt10">
+        <li @click="toggleComment()">
+          <div class="info">用户评价({{commentNum}})</div>
+          <div class="key">查看全部 <i class="iconfont icon-xiangyou"></i></div>
+        </li>
+        <li v-for="(item, index) in goods.comments" :key="index" v-if="index === 0">
+          <div class="info comment-user">
+            <div class="user-info">
+              <img :src="item.frontUserAvatar" class="portrait" alt="用户头像">
+              <span class="name">{{item.frontUserName}}</span>
+              <span class="star"><i class="iconfont icon-xing" v-for="n in item.star" :key="n"></i></span>
+            </div>
+            <div class="extra-info">
+              {{item.commentTime}}
+              <span v-for="(sku, index) in item.skuInfo" :key="index">{{sku}}；</span>
+            </div>
+            <p>{{item.content}}</p>
+          </div>
+        </li>
+      </ul>
+      <section class="mt10 bgc-fff">
+        <ul class="flex-list attr-list">
+          <li>
+            <div class="info">商品参数</div>
+          </li>
+          <li v-for="(item, index) in goods.attrList" :key="index">
+            <div class="key">{{item.attrName}}</div>
+            <div class="info">{{item.attrValue}}</div>
+          </li>
+        </ul>
+        <section v-html="goods.detailHtml"></section>
+        <section class="mod">
+          <div class="mod-hd">
+            <span class="mod-tit">质检报告</span>
+          </div>
+          <div class="mod-bd">
+            <img :src="goods.reportCheck" class="reportcheck" alt="质检报告">
+          </div>
+        </section>
+        <section class="mod">
+          <div class="mod-hd">
+            <span class="mod-tit">常见问题</span>
+          </div>
+          <div class="mod-bd">
+            <ul class="dot-list question-list">
+              <li v-for="(item, index) in goods.issueList" :key="index">
+                <p class="question" v-html="item.question"></p>
+                <p v-html="item.answer"></p>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </section>
     </main>
+    <!--规格面板-->
+    <transition name="slide" mode="out-in">
+      <section class="panel" v-show="isShowSpec">
+        <div class="panel-bd spec-box">
+          <div class="spec-hd">
+            <img :src="activeSkuPic === '' ? goods.skuImg : activeSkuPic" alt="">
+            <div class="txt">
+              <p class="price">价格：￥{{activeSkuPrice === '' ? goods.price : activeSkuPrice}}</p>
+              <p>已选择：<span>{{activeSkuSelect}}</span></p>
+            </div>
+          </div>
+          <ul class="spec-list">
+            <li v-for="(item, itemIndex) in skuMap" :key="itemIndex">
+              <h4>{{item.name}}</h4>
+              <div><span v-for="(tag, index) in item.list" :key="index" @click="tagVal($event,itemIndex)" :class="[activeSkuVal[itemIndex] === tag ? 'active' : '','tag tag-hollow']">{{tag}}</span></div>
+            </li>
+            <li>
+              <h4>数量</h4>
+              <div class="count">
+                <span @click="countGoodsNumber(false)">-</span>
+                <input type="number" value="1" v-model="goodsNumber" />
+                <span @click="countGoodsNumber(true)">+</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </transition>
+    <!--评论面板-->
+    <transition name="slide" mode="out-in">
+      <section class="panel panel-back comment-list" v-show="isShowComment">
+        <div class="panel-hd"><span class="tag tag-hollow">全部({{commentNum}})</span></div>
+        <div class="panel-bd">
+          <ul>
+            <li v-for="(item, index) in goods.comments" :key="index">
+              <div class="info comment-user">
+                <div class="user-info">
+                  <img :src="item.frontUserAvatar" class="portrait" alt="用户头像">
+                  <span class="name">{{item.frontUserName}}</span>
+                  <span class="star"><i class="iconfont icon-xing" v-for="n in item.star" :key="n"></i></span>
+                </div>
+                <div class="extra-info">
+                  {{item.commentTime}}
+                  <span v-for="(sku, index) in item.skuInfo" :key="index">{{sku}}；</span>
+                </div>
+                <p>{{item.content}}</p>
+              </div>
+            </li>
+          </ul>
+          <div class="flex panel-ft">
+            <div class="info" @click="toggleComment()">返回</div>
+          </div>
+        </div>
+      </section>
+    </transition>
+    <!--服务面板-->
+    <transition name="slide" mode="out-in">
+      <section class="panel panel-back" v-show="isShowService">
+        <div class="panel-hd">服务</div>
+        <div class="panel-bd">
+          <ul class="dot-list question-list">
+            <li v-for="(policy, index) in goods.policyList" :key="index">
+              <p class="question">{{policy.title}}</p>
+              <p v-if="policy.content">{{policy.content}}</p>
+              <p v-if="policy.distributionArea">不支持省份：<span v-for="(area, index) in policy.distributionArea.provinceList" :key="index">{{area}}</span></p>
+            </li>
+          </ul>
+        </div>
+        <div class="flex panel-ft">
+          <div class="info" @click="toggleService()">返回</div>
+        </div>
+      </section>
+    </transition>
     <aside>
       <gotop></gotop>
     </aside>
     <footer class="footer">
       <div class="flex">
-        <div class="key"><i class="iconfont icon-kefu"></i></div>
+        <div class="key" v-show="isShowSpec" @click="toggleSpec()">返回</div>
+        <div class="key" v-show="!isShowSpec"><i class="iconfont icon-kefu"></i></div>
         <div class="info"><div class="btn btn-white btn-full">立即购买</div></div>
         <div class="info"><div class="btn btn-full">加入购物车</div></div>
       </div>
@@ -58,12 +206,36 @@ export default {
   },
   data() {
     return {
-      imgs: ['../src/assets/images/goods4.jpg','../src/assets/images/goods3.png'],
-      goods: {}
+      goods: {}, //商品
+      comments: [], //评价
+      isShowSpec: false, //是否显示规格面板
+      isShowComment: false, //是否显示评价面板
+      isShowService: false, //是否显示服务面板
+      goodsNumber: 1, //商品数量
+      skuMap: {},//商品规格
+      activeSkuVal: {}, //选中规格
+      activeSkuPrice: '', //选中规格对应价格
+      activeSkuPic: '', //选中规格对应图片
+      isAllSelected: false //是否全部选中
     }
   },
   computed: {
-    ...mapState({goodsDetailData: state => state.goodsDetailData})
+    ...mapState({goodsDetailData: state => state.goodsDetailData}),
+    pointNum() {
+      return Math.floor(this.goods.price/10)
+    },
+    commentNum() {
+      return this.comments.length
+    },
+    isShowMain() {
+      return !(this.isShowSpec || this.isShowComment || this.isShowService)
+    },
+    activeSkuDes() {
+      return this.isAllSelected ? '已选择：' + Object.values(this.activeSkuVal).join(' ') + 'X' + this.goodsNumber : '请选择规格数量'
+    },
+    activeSkuSelect() {
+      return Object.values(this.activeSkuVal).length === 0 ? '请选择规格数量' : Object.values(this.activeSkuVal).join(' ')
+    }
   },
   created(){
     this.initData()
@@ -72,12 +244,69 @@ export default {
     initData(){
       this.$store.state.goodsId = this.$route.query.id
       this.$store.dispatch('getGoodsDetailData')
+    },
+    toggleSpec() {
+      this.isShowSpec = !this.isShowSpec
+    },
+    toggleComment() {
+      this.isShowComment = !this.isShowComment
+    },
+    toggleService() {
+      this.isShowService = !this.isShowService
+    },
+    //规格选中
+    tagVal(event,index) {
+      this.activeSkuVal[index] = event.target.innerText
+      this.activeSkuVal = Object.assign({}, this.activeSkuVal)
+      this.goods.skuList.forEach((value,index) => {
+        let flag = false
+        if(Object.values(this.activeSkuVal).length === value.itemSkuSpecValueList.length){
+          this.isAllSelected = true
+          flag = true
+          value.itemSkuSpecValueList.forEach((val,i) => {
+            if(Object.values(this.activeSkuVal)[i] !== val.value){
+              flag = false
+            }
+          })
+        }
+        if(flag) {
+          this.activeSkuPrice = value.calcPrice
+          this.activeSkuPic = value.pic
+        }
+      })
+    },
+    //商品数量加减
+    countGoodsNumber(flag){
+      if(flag){
+        //加
+        this.goodsNumber++
+      }else{
+        //减
+        if(this.goodsNumber <= 1){
+          this.goodsNumber = 1
+          return
+        }
+        this.goodsNumber--
+      }
     }
   },
   watch: {
     goodsDetailData: function (value) {
       if (value) {
         this.goods = value
+        this.comments = value.comments
+        value.skuList.forEach((val, index) => {
+          val.itemSkuSpecValueList.forEach((item, index) => {
+            if(!this.skuMap[item.id]){
+              this.skuMap[item.id] = {}
+              this.skuMap[item.id]['name'] = item.name
+              this.skuMap[item.id]['list'] = []
+            }
+            if(this.skuMap[item.id]['list'].indexOf(item.value) === -1){
+              this.skuMap[item.id]['list'].push(item.value)
+            }
+          })
+        })
       }
     }
   }
@@ -90,6 +319,7 @@ export default {
     .isFixed {
       height 1.8rem  
       background-color #fafafa
+      border-bottom 1px solid #ececec
     }
     .flex {
       .key {
@@ -111,6 +341,7 @@ export default {
       line-height 2.2rem
       background-color #ffffff
       border-top 1px solid #c7c7c7
+      z-index 90
       .key {
         flex-basis 3.3rem
         border-right 1px solid #c7c7c7
@@ -163,11 +394,18 @@ export default {
         margin-top .25rem  
       }
       .price {
-        display inline-block
         font-size 1rem
         font-weight 700
         color #B4282D  
         margin-top .25rem  
+      }
+      .tag-hollow {
+        color #f48f18
+        border 1px solid #f48f18
+        margin .5rem .25rem 0 0
+        .iconfont {
+          font-size .6rem  
+        }  
       }
     }
     .key {
@@ -182,5 +420,216 @@ export default {
         margin-bottom .25rem
       }
     }
+  }
+  .dot-list {
+    font-size .6rem
+    & > li {
+      padding-left .5rem
+      position relative
+      &:after {
+        content ''  
+        display inline-block
+        width 4px
+        height 4px
+        background-color #b4282d
+        position absolute
+        left .1rem
+        top .2rem
+      }
+    }  
+  }
+  .service-info {
+    display flex
+    flex-wrap wrap
+    font-size .6rem
+    color #7f7f7f
+    padding-top .2rem
+    & > li {
+      line-height 1
+      margin 0 .75rem .5rem 0
+      padding-left .5rem
+    }  
+  }
+  .attr-list {
+    padding .5rem .5rem 0
+    & > li {
+      border-style dashed 
+      border-color #999
+      .key {
+        flex-basis 3.5rem
+        color #999
+      }  
+    }  
+  }
+  .comment-user {
+    font-size .6rem
+    .user-info {
+      padding-top .5rem
+      display flex
+      align-items center
+      margin-bottom .5rem  
+      .portrait {
+        width 1.4rem
+        height 1.4rem
+        border-radius 50% 
+        margin-right .25rem 
+      }  
+      .name {
+        margin-right .25rem  
+      }
+      .star .iconfont {
+        font-size .6rem
+        color #ffb54a  
+        margin-right .15rem
+      }
+    }
+    .extra-info {
+      color #7f7f7f
+      line-height 1
+      margin-bottom .25rem  
+    }
+  }
+  .reportcheck {
+    border 1px solid rgba(0,0,0,.15)  
+  }
+  .question-list {
+    color #787878
+    line-height .75rem
+    & > li {
+      margin-bottom .5rem
+      .question {
+        color #303030  
+        margin-bottom .25rem
+      }
+    }
+  }
+  .panel {
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background-color #fff  
+    padding 1.8rem 0 2.2rem 0
+    z-index 80
+    .panel-hd {
+      height 1.8rem
+      line-height 1.8rem
+      text-align center
+      border-bottom 1px solid #ececec
+      font-size .7rem
+      padding 0 .5rem
+    }
+    .panel-bd {
+      padding .5rem
+      .question-list > li {
+        margin-bottom 1rem
+        p {
+          line-height 1.5
+        }
+      }  
+    }
+  }
+  .panel-back {
+    z-index 99
+    .panel-ft {
+      display flex
+      width 100%
+      height 2.2rem
+      align-items center
+      justify-content center
+      background-color #fafafa
+      border-top 1px solid #ececec
+      position fixed
+      bottom 0
+      left 0
+    }
+  }
+  .comment-list {
+    .panel-hd   {
+      text-align left 
+      padding .25rem .5rem
+      .tag-hollow {
+        color #b4282d
+        border-color #b4282d
+        padding .2rem .25rem
+      }
+    }
+    .panel-bd {
+      padding-top 0
+      padding-bottom 0  
+      li {
+        border-bottom 1px solid #ececec
+        padding-bottom .5rem
+      }
+    }
+  }
+  .spec-box {
+    font-size .6rem
+    .spec-hd {
+      display flex
+      align-items flex-end
+      img {
+        width 4.2rem
+        height 4.2rem
+      }
+      .txt {
+        margin-left .5rem
+        line-height 1.6
+      }
+    }  
+    .spec-list {
+      margin-top 1rem  
+      & > li {
+        padding-bottom .5rem
+        h4 {
+          padding-bottom .5rem
+        }
+        .tag-hollow {
+          border-color #333
+          color #333
+          padding .35rem .7rem
+          margin 0 .5rem .5rem 0  
+          &.active {
+            border-color #b4282d
+            color #b4282d
+          }
+        }
+      }
+    }
+  }
+  .count {
+    height 1.4rem
+    line-height 1.4rem
+    display flex
+    align-items center
+    text-align center
+    span {
+      flex-basis 1.9rem 
+      border 1px solid #d9d9d9
+      font-size 1.1rem
+      color #999
+      &:first-child {
+        border-right none  
+        border-radius 2px 0 0 2px
+      }
+      &:last-child {
+        border-left none  
+        border-radius 0 2px 2px 0
+      }
+    }  
+    input {
+      border 1px solid #d9d9d9
+      line-height 1.4rem
+      text-align center
+      width 3rem
+    }
+  }
+  .slide-enter-active, .slide-leave-active {
+    transition: all .4s;
+  }
+  .slide-enter, .slide-leave-active {
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
   }
 </style>

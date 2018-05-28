@@ -6,7 +6,7 @@
     </ul>
     <section class="mt10">
       <a class="title has-icon" href="">{{provideGoods.title}} <i class="iconfont icon-xiangyou1"></i></a>
-      <Goods :goods='provideGoods' :class="'flex-item-2 txt-absolute'"></Goods>
+      <Goods :goods='provideGoods.items' :class="'flex-item-2 txt-absolute'"></Goods>
     </section>
     <section class="mt10 bgc-fff">
       <a href="" class="cus-title title-new">
@@ -14,7 +14,7 @@
         <span class="tag-showall">查看全部 <i class="iconfont icon-xiangyou"></i></span>
       </a>
       <div class="over-auto">
-        <Goods :goods="newGoods" :class="'flex-swiper'" :showAll="true"></Goods>
+        <Goods :goods="newGoods.items" :class="'flex-swiper'" :showAll="true"></Goods>
       </div>
     </section>
     <section class="mt10 bgc-fff">
@@ -23,22 +23,18 @@
         <span class="tag-showall">查看全部 <i class="iconfont icon-xiangyou"></i></span>
       </a>
       <div class="over-auto">
-        <Goods :goods="hotGoods" :class="'flex-swiper'" :showAll="true"></Goods>
+        <Goods :goods="hotGoods.items" :class="'flex-swiper'" :showAll="true"></Goods>
       </div>
     </section>
     <section class="mt10 bgc-fff">
       <a class="title has-icon" href="">{{topicGoods.title}} <i class="iconfont icon-xiangyou1"></i></a>
       <div class="over-auto">
-        <Goods :goods='topicGoods' :class="'flex-swiper topic-goods'"></Goods>
+        <Goods :goods='topicGoods.items' :class="'flex-swiper topic-goods'"></Goods>
       </div>
     </section>
-    <section class="mt10">
-      <a class="title" href="">{{liveGoods.title}}</a>
-      <Goods :goods='liveGoods' :class="'flex-item-2 descript-absolute'" :showMore="true"></Goods>
-    </section>
-    <section class="mt10">
-      <a class="title" href="">{{fitGoods.title}}</a>
-      <Goods :goods='fitGoods' :class="'flex-item-2 descript-absolute'" :showMore="true"></Goods>
+    <section class="mt10" v-for="(item, index) in otherGoods" :key="index">
+      <a class="title" href="">{{item.title}}好物</a>
+      <Goods :goods='item.items' :class="'flex-item-2 descript-absolute'" :showMore="true"></Goods>
     </section>
     <aside>
       <span class="gift"></span>
@@ -67,8 +63,7 @@ export default {
       newGoods: {},
       hotGoods: {},
       topicGoods: {},
-      liveGoods: {},
-      fitGoods: {}
+      otherGoods: {}
     }
   },
   computed: {
@@ -79,15 +74,12 @@ export default {
   },
   watch: {
     recommendData: function (value) {
-      if (value && value.modCon) {
+      if (value) {
         this.provideGoods = value.modCon.provideGoods
         this.newGoods = value.modCon.newGoods
         this.hotGoods = value.modCon.hotGoods
         this.topicGoods = value.modCon.topicGoods
-        this.liveGoods = value.modCon.liveGoods
-        this.fitGoods = value.modCon.fitGoods
-      }
-      if(value && value.banner) {
+        this.otherGoods = value.modCon.otherGoods
         this.banners = value.banner
       }
     }

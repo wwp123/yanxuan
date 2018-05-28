@@ -1,6 +1,6 @@
 <template>
 <ul class="goods">
-  <li v-for="(item, index) in goods.items" :key="index">
+  <li v-for="(item, index) in goods" :key="index">
     <router-link :to="{path:'/goodsDetail',query:{id:item.id}}" class="goods-item">
       <div class="img">
         <img :src="item.imgSrc" :alt="item.name">
