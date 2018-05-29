@@ -22,7 +22,7 @@
     <div class="history">
       <h4 class="hd">热门搜索</h4>
       <div class="bd">
-        <router-link :to="{path:'/searchResult',query:{keyword:tag}}" v-for="(tag,index) in this.$store.state.tagsHot" :key="index"><span class="tag tag-hollow hot-tag">{{tag}}</span></router-link>
+        <router-link :to="{path:'/searchResult',query:{keyword:tag}}" v-for="(tag,index) in this.$store.state.tagsHot" :key="index" class="hot-tag"><span class="tag tag-hollow">{{tag}}</span></router-link>
       </div>
     </div>
     <router-view class="cover"></router-view>
@@ -140,9 +140,9 @@ export default {
     padding 4px 6px
     border-radius 2px
     margin 0 .65rem .65rem 0
-    &.hot-tag:nth-child(-n+4) {
-      border-color #b4282d
-      color #b4282d  
-    }  
+  }
+  .hot-tag:nth-child(-n+4) .tag-hollow {
+    border-color #b4282d
+    color #b4282d  
   }
 </style>

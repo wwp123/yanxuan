@@ -16,6 +16,7 @@
       <router-link to="/cart" tag="li">
         <i class="iconfont icon-gouwuche"></i>
         <p>购物车</p>
+        <span class="icon-num" v-if="this.$store.getters.cartGoodsNumber !== 0">{{this.$store.getters.cartGoodsNumber}}</span>
       </router-link>
       <router-link to="/center" tag="li">
         <i class="iconfont icon-geren"></i>
@@ -26,7 +27,6 @@
 </template>
 
 <script>
-import '../assets/iconfont/iconfont.css'
 export default {
   
 }
@@ -51,6 +51,7 @@ export default {
         text-align center
         font-size .6rem
         color #666666
+        position relative
         &.router-link-active {
             color #b4282d
         }

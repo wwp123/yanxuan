@@ -11,6 +11,7 @@ import searchResult from 'pages/search/children/searchResult.vue'
 import recommend from 'pages/home/children/recommend.vue'
 import other from 'pages/home/children/other.vue'
 import goodsDetail from 'pages/goodsDetail/goodsDetail.vue'
+import login from 'pages/login/login.vue'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const router = new VueRouter({
       //商品详情页
       path: '/goodsDetail',
       component: goodsDetail
+    },
+    {
+      //登录
+      path: '/login',
+      component: login
     }
   ]
 })

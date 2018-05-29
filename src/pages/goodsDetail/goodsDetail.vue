@@ -5,7 +5,10 @@
         <router-link to="/home" class="key"><i class="iconfont icon-shouye"></i></router-link>
         <router-link to="/home" class="info"><h1 class="logo"></h1></router-link>
         <router-link to="/search" class="key"><i class="iconfont icon-sousuo"></i></router-link>
-        <router-link to="/cart" class="key"><i class="iconfont icon-gouwuche"></i></router-link>
+        <router-link to="/cart" class="key">
+          <i class="iconfont icon-gouwuche"></i>
+          <span class="icon-num" v-if="cartGoodsNumber !== 0">{{cartGoodsNumber}}</span>
+        </router-link>
       </div>
     </header>
     <main v-show="isShowMain">
@@ -133,11 +136,18 @@
             </li>
           </ul>
         </div>
+        <footer class="footer">
+          <div class="flex">
+            <div class="key" @click="toggleSpec()">返回</div>
+            <div class="info"><div class="btn btn-white btn-full">立即购买</div></div>
+            <div class="info"><div class="btn btn-full" @click="addCart('sku')">加入购物车</div></div>
+          </div>
+        </footer>
       </section>
     </transition>
     <!--评论面板-->
     <transition name="slide" mode="out-in">
-      <section class="panel panel-back comment-list" v-show="isShowComment">
+      <section class="panel  comment-list" v-show="isShowComment">
         <div class="panel-hd"><span class="tag tag-hollow">全部({{commentNum}})</span></div>
         <div class="panel-bd">
           <ul>
@@ -164,7 +174,7 @@
     </transition>
     <!--服务面板-->
     <transition name="slide" mode="out-in">
-      <section class="panel panel-back" v-show="isShowService">
+      <section class="panel " v-show="isShowService">
         <div class="panel-hd">服务</div>
         <div class="panel-bd">
           <ul class="dot-list question-list">
@@ -185,19 +195,19 @@
     </aside>
     <footer class="footer">
       <div class="flex">
-        <div class="key" v-show="isShowSpec" @click="toggleSpec()">返回</div>
-        <div class="key" v-show="!isShowSpec"><i class="iconfont icon-kefu"></i></div>
-        <div class="info"><div class="btn btn-white btn-full">立即购买</div></div>
-        <div class="info"><div class="btn btn-full">加入购物车</div></div>
+        <div class="key"><i class="iconfont icon-kefu"></i></div>
+        <div class="info"><div class="btn btn-white btn-full" @click="toggleSpec()">立即购买</div></div>
+        <div class="info"><div class="btn btn-full" @click="addCart()">加入购物车</div></div>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 import swiper from 'components/swiper.vue'
 import gotop from 'components/gotop.vue'
+import { Toast } from 'mint-ui'
 
 export default {
   components: {
@@ -220,19 +230,28 @@ export default {
     }
   },
   computed: {
-    ...mapState({goodsDetailData: state => state.goodsDetailData}),
+    ...mapState({
+      goodsDetailData: state => state.goodsDetailData,
+      cartGoods: state => state.cartGoods
+    }),
+    ...mapGetters(['cartGoodsNumber']),
+    //积分
     pointNum() {
       return Math.floor(this.goods.price/10)
     },
+    //评价
     commentNum() {
       return this.comments.length
     },
+    //是否显示主面板
     isShowMain() {
       return !(this.isShowSpec || this.isShowComment || this.isShowService)
     },
+    //主面板请选择规格数量
     activeSkuDes() {
       return this.isAllSelected ? '已选择：' + Object.values(this.activeSkuVal).join(' ') + 'X' + this.goodsNumber : '请选择规格数量'
     },
+    //规格面板请选择规格数量
     activeSkuSelect() {
       return Object.values(this.activeSkuVal).length === 0 ? '请选择规格数量' : Object.values(this.activeSkuVal).join(' ')
     }
@@ -245,14 +264,30 @@ export default {
       this.$store.state.goodsId = this.$route.query.id
       this.$store.dispatch('getGoodsDetailData')
     },
+    //显示隐藏规格面板
     toggleSpec() {
       this.isShowSpec = !this.isShowSpec
     },
+    //显示隐藏评价面板
     toggleComment() {
       this.isShowComment = !this.isShowComment
     },
+    //显示隐藏服务面板
     toggleService() {
       this.isShowService = !this.isShowService
+    },
+    //商品数量加减
+    countGoodsNumber(flag){
+      if(flag){
+        this.goodsNumber++
+      }else{
+        if(this.goodsNumber <= 1){
+          Toast('本商品1件起售')
+          this.goodsNumber = 1
+          return
+        }
+        this.goodsNumber--
+      }
     },
     //规格选中
     tagVal(event,index) {
@@ -275,18 +310,34 @@ export default {
         }
       })
     },
-    //商品数量加减
-    countGoodsNumber(flag){
-      if(flag){
-        //加
-        this.goodsNumber++
-      }else{
-        //减
-        if(this.goodsNumber <= 1){
-          this.goodsNumber = 1
-          return
+    //加入购物车
+    addCart(panel) {
+      if(this.isAllSelected) {
+        Toast('加入成功')
+        if(!this.cartGoods[this.$route.query.id]){
+          let item = {
+            'name': this.goods.name,
+            'pic': this.activeSkuPic,
+            'price': this.activeSkuPrice,
+            'sku': Object.values(this.activeSkuVal).join(';'),
+            'num': this.goodsNumber
+          }
+          this.cartGoods[this.$route.query.id] = item
+        }else{
+          this.cartGoods[this.$route.query.id].num += this.goodsNumber
         }
-        this.goodsNumber--
+        this.$store.commit('ADD_TO_CART', this.cartGoods)
+      }else{
+        if(panel === 'sku'){
+          for(let key in this.skuMap){
+            if(Object.keys(this.activeSkuVal).indexOf(key) === -1){
+              Toast('请选择'+this.skuMap[key].name)
+              return 
+            }
+          }
+        }else{
+          this.toggleSpec()
+        }
       }
     }
   },
@@ -324,6 +375,7 @@ export default {
     .flex {
       .key {
         padding .25rem .5rem
+        position relative
       }  
       .info {
         margin 0 .5rem  
@@ -511,15 +563,7 @@ export default {
     right 0
     background-color #fff  
     padding 1.8rem 0 2.2rem 0
-    z-index 80
-    .panel-hd {
-      height 1.8rem
-      line-height 1.8rem
-      text-align center
-      border-bottom 1px solid #ececec
-      font-size .7rem
-      padding 0 .5rem
-    }
+    z-index 99
     .panel-bd {
       padding .5rem
       .question-list > li {
@@ -528,21 +572,6 @@ export default {
           line-height 1.5
         }
       }  
-    }
-  }
-  .panel-back {
-    z-index 99
-    .panel-ft {
-      display flex
-      width 100%
-      height 2.2rem
-      align-items center
-      justify-content center
-      background-color #fafafa
-      border-top 1px solid #ececec
-      position fixed
-      bottom 0
-      left 0
     }
   }
   .comment-list {
@@ -596,33 +625,6 @@ export default {
           }
         }
       }
-    }
-  }
-  .count {
-    height 1.4rem
-    line-height 1.4rem
-    display flex
-    align-items center
-    text-align center
-    span {
-      flex-basis 1.9rem 
-      border 1px solid #d9d9d9
-      font-size 1.1rem
-      color #999
-      &:first-child {
-        border-right none  
-        border-radius 2px 0 0 2px
-      }
-      &:last-child {
-        border-left none  
-        border-radius 0 2px 2px 0
-      }
-    }  
-    input {
-      border 1px solid #d9d9d9
-      line-height 1.4rem
-      text-align center
-      width 3rem
     }
   }
   .slide-enter-active, .slide-leave-active {
