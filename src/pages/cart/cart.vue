@@ -86,7 +86,7 @@ export default {
     this.getAllGoodsPrice()
   },
   computed: {
-    ...mapState(['cartGoods']),
+    ...mapState(['cartGoods','cartNumber']),
     ...mapGetters(['cartGoodsNumber'])
   },
   methods: {
@@ -212,7 +212,7 @@ export default {
         }
       }
       this.editCheckedGoods = {...this.editCheckedGoods}
-      this.cartGoods = {...this.cartGoods}
+      this.$store.commit('UPDATE_CART', this.cartGoods)
       this.hasSelectedAll()
       this.getSelectedNumber()
       this.getAllGoodsPrice()

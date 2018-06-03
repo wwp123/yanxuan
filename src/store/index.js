@@ -16,7 +16,6 @@ const state = {
 	searchResultData: [],//搜索结果
 	goodsId: null,//商品id
 	goodsDetailData: {},//商品详情信息
-	cartNumber: 0, //购物车商品总数量
 	cartGoods: {} //购物车商品列表
 }
 

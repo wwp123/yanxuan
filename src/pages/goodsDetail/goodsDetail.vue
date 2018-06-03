@@ -327,7 +327,7 @@ export default {
         }else{
           this.cartGoods[this.$route.query.id].num += this.goodsNumber
         }
-        this.$store.commit('ADD_TO_CART', this.cartGoods)
+        this.$store.commit('UPDATE_CART', this.cartGoods)
       }else{
         if(panel === 'sku'){
           for(let key in this.skuMap){
