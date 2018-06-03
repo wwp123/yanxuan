@@ -319,8 +319,9 @@ export default {
             'name': this.goods.name,
             'pic': this.activeSkuPic,
             'price': this.activeSkuPrice,
-            'sku': Object.values(this.activeSkuVal).join(';'),
-            'num': this.goodsNumber
+            'sku': Object.values(this.activeSkuVal).join('; '),
+            'num': this.goodsNumber,
+            'checked': true
           }
           this.cartGoods[this.$route.query.id] = item
         }else{
@@ -365,23 +366,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .topbar {
-    height 1.8rem
-    .isFixed {
-      height 1.8rem  
-      background-color #fafafa
-      border-bottom 1px solid #ececec
-    }
-    .flex {
-      .key {
-        padding .25rem .5rem
-        position relative
-      }  
-      .info {
-        margin 0 .5rem  
-      }
-    }
-  }
   .footer {
     height 2.2rem
     & > div {
@@ -539,6 +523,9 @@ export default {
       color #7f7f7f
       line-height 1
       margin-bottom .25rem  
+    }
+    p {
+      line-height .8rem
     }
   }
   .reportcheck {
