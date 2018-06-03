@@ -48,6 +48,7 @@ export default {
       position relative
       color #333
       .img {
+        min-height 5rem
         background-color #f4f4f4
       }
       .txt {

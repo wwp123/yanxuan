@@ -87,7 +87,7 @@
           </li>
         </ul>
         <section v-html="goods.detailHtml"></section>
-        <section class="mod">
+        <section class="mod" v-if="goods.reportCheck">
           <div class="mod-hd">
             <span class="mod-tit">质检报告</span>
           </div>
@@ -588,10 +588,14 @@ export default {
       img {
         width 4.2rem
         height 4.2rem
+        background-color #f4f4f4
       }
       .txt {
         margin-left .5rem
         line-height 1.6
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
       }
     }  
     .spec-list {
