@@ -10,7 +10,7 @@
         <span v-for="(tag,index) in item.tags" :key="index" :class="['tag',tag.class]">{{tag.name}}</span>
         <p class="name">{{item.name}}</p>
         <p class="descript" v-if="item.descript">{{item.descript}}</p>
-        <p class="price">{{item.price}}</p>
+        <p class="price">{{item.price,item.yuan | priceFomat(item.price,item.yuan)}}</p>
         <span class="tag tag-hollow" v-if="item.tagNew">{{item.tagNew}}</span>
       </div>
     </router-link>
@@ -35,6 +35,16 @@ export default {
     goods: {},
     showAll: false,
     showMore: false
+  },
+  filters: {
+    //格式化价格
+    priceFomat(price,yuan){
+      if(typeof yuan !== 'undefined'){
+        return price + yuan
+      }else{
+        return '￥' + price
+      }
+    }
   }
 }
 </script>

@@ -25,7 +25,7 @@
                       <input type="number" v-model="goods.num" />
                       <span @click="countGoodsNumber(goods,true)">+</span>
                     </div>
-                    <span>{{goods.price | moneyFomat(goods.price)}}</span>
+                    <span>{{goods.price | priceFomat(goods.price)}}</span>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
         <div class="info">
           <span class="checkbox" :checked="isSelectedAll" @click="selectedAll(isSelectedAll)"><i class="iconfont icon-check"></i></span>
           <span>已选({{selectedNum}})</span>
-          <span class="fr price" v-if="!isShowEditor">{{totalPrice | moneyFomat(totalPrice)}}</span>
+          <span class="fr price" v-if="!isShowEditor">{{totalPrice | priceFomat(totalPrice)}}</span>
         </div>
         <div class="key" v-if="!isShowEditor">
           <span :class="[{'disabled': selectedNum <= 0},'btn btn-full']">下单</span>
@@ -78,8 +78,8 @@ export default {
   //过滤
   filters: {
     //格式化价格
-    moneyFomat(money){
-      return '￥' + money.toFixed(2);
+    priceFomat(price){
+      return '￥' + price.toFixed(2);
     }
   },
   created(){
