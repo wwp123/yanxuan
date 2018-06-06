@@ -33,7 +33,7 @@
           </ul>
         </section>
         <div class="nodata" v-else>
-          <img src="../../../src/assets/images/cart.png" alt="">
+          <i class="icon icon-cart"></i>
           <p>去添加点什么吧</p>
           <router-link to="/login" class="btn">登录</router-link>
         </div>
@@ -280,28 +280,6 @@ export default {
     .iconfont {
       color #666
     }  
-  }
-  .nodata {
-    position absolute
-    top 50%
-    left 50%
-    transform translate(-50%,-50%)
-    text-align center
-    img {
-      width 5.3rem
-    } 
-    p {
-      font-size .6rem
-      color #999
-      margin-top -.25rem
-    }
-    .btn {
-      width 10.2rem
-      height 2rem
-      line-height 2rem
-      font-size .65rem
-      margin-top 1.25rem  
-    }
   }
   .notice {
     display flex

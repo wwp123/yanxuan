@@ -75,10 +75,12 @@ export default {
   .flex-item-2 {
     display flex
     flex-wrap wrap
-    justify-content space-evenly
+    padding: 0 .3rem .1rem
     li {
-      width 47%
-      margin-bottom 2%
+      width 50%
+      padding 0 .2rem
+      margin-bottom .4rem
+      box-sizing border-box
     }  
   }
   .flex-swiper {
