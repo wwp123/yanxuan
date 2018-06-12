@@ -47,7 +47,7 @@
         </ul>
       </div>
     </header>
-    <section class="mt10">
+    <section class="pt10 bgc-fff">
       <Goods :goods='goods' :class="'flex-item-2 descript-absolute'"></Goods>
     </section>
     <section class="nodata" v-if="goodsLen">
@@ -67,12 +67,12 @@ export default {
   components: {
     Goods
   },
-  data() {
+  data () {
     return {
-      goods: [], //商品
+      goods: [], // 商品
       sortBy: 'multi', // 筛选的条件
-      isShowSortCon: false, //是否显示筛选内容
-      priceSortKey: { //价格排序
+      isShowSortCon: false, // 是否显示筛选内容
+      priceSortKey: { // 价格排序
         'asc': {
           'order': 1,
           'txt': '从低到高'
@@ -82,69 +82,69 @@ export default {
             'txt': '从高到低'
         }
       }, 
-      order: 0, //排序方式
-      priceSortKeyCurr: null, //价格排序标签选中
-      minPrice: null,  //用户输入的最低价格
-      maxPrice: null,  //用户输入的最高价格
-      classifyTag: ['全部'], //分类标签
-      classifyTagCurr: 0  //分类标签默认选中
+      order: 0, // 排序方式
+      priceSortKeyCurr: null, // 价格排序标签选中
+      minPrice: null,  // 用户输入的最低价格
+      maxPrice: null,  // 用户输入的最高价格
+      classifyTag: ['全部'], // 分类标签
+      classifyTagCurr: 0  // 分类标签默认选中
     }
   },
   computed: {
     ...mapState({searchResultData: state => state.searchResultData}),
-    //计算商品数量
-    goodsLen() {
-      if(this.goods.length === 0) {
+    // 计算商品数量
+    goodsLen () {
+      if (this.goods.length === 0) {
         return true
-      }else{
+      } else {
         return false
       }
     }
   },
-  created(){
+  created () {
     this.$store.dispatch('getSearchResultData')
   },
   methods: {
-    //重新给goods赋值
-    deassignGoods() {
+    // 重新给goods赋值
+    deassignGoods () {
       this.goods = []
-      for(let i in this.searchResultData){
+      for(let i in this.searchResultData) {
         this.goods.push(this.searchResultData[i])
       }
     },
-    //综合、价格、分类选中
-    chooseSort(type,flag){
+    // 综合、价格、分类选中
+    chooseSort(type,flag) {
       if(this.sortBy === type) {
         if(flag) {
           this.isShowSortCon = !this.isShowSortCon
         }
-      }else{
+      } else {
         this.sortBy = type
         if(flag) {
           this.isShowSortCon = true
-        }else{
+        } else {
           this.isShowSortCon = false
         }
       }
-      if(type === 'multi') {  //综合排序
+      if(type === 'multi') {  // 综合排序
         this.priceSortKeyCurr = null
         this.order = 0
         this.deassignGoods()
       }
     },
-    //调整最低价最高价
+    // 调整最低价最高价
     sortPriceFomat() {
       let tempPrice = 0
-      if(this.minPrice !== null && this.maxPrice !== null && parseInt(this.minPrice) > parseInt(this.maxPrice)){
+      if(this.minPrice !== null && this.maxPrice !== null && parseInt(this.minPrice) > parseInt(this.maxPrice)) {
         tempPrice = this.minPrice
         this.minPrice = this.maxPrice
         this.maxPrice = tempPrice
       }
     },
-    //商品按照价格排序
+    // 商品按照价格排序
     priceFilter() {
       this.deassignGoods()
-      //价格区间筛选
+      // 价格区间筛选
       this.goods = [...this.goods.filter((value,index) => {
         if(this.minPrice !== null && this.minPrice !== '') {
           if(value.price < this.minPrice) return false
@@ -155,17 +155,17 @@ export default {
         return true
       })]
     },
-    //排序方式选中
+    // 排序方式选中
     priceSortKeySelect(value,index) {
       if(this.priceSortKeyCurr === index) {
         this.priceSortKeyCurr = null
         this.order = 0
-      }else{
+      } else {
         this.priceSortKeyCurr = index
         this.order = value.order
       }
     },
-    //排序方式
+    // 排序方式
     priceSort() {
       this.goods.sort((a,b) => {
         a = a['price']
@@ -173,7 +173,7 @@ export default {
         return (a === b ? 0 : a > b ? 1 : -1) * this.order
       })
     },
-    //分类标签选中
+    // 分类标签选中
     classifyTagSelect(value,index) {
       this.classifyTagCurr = index
       this.deassignGoods()
@@ -183,18 +183,18 @@ export default {
         })]
       }
     },
-    //确定按钮
+    // 确定按钮
     sortPriceConfirm() {
       this.isShowSortCon = false
       this.sortPriceFomat()
       this.priceFilter()
       this.priceSort()
     },
-    //显示筛选内容
+    // 显示筛选内容
     showSortCon() {
       this.isShowSortCon = true
     },
-    //不显示筛选内容
+    // 不显示筛选内容
     unShowSortCon() {
       this.isShowSortCon = false
     }
@@ -202,7 +202,7 @@ export default {
   watch: {
     searchResultData: function (value) {
       if (value) {
-        for(let i in value){
+        for(let i in value) {
           this.goods.push(value[i])
           if(this.classifyTag.indexOf(value[i].modTitle) === -1) {
             this.classifyTag.push(value[i].modTitle)

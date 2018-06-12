@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       banners: [],
-      servicePolicy: ['网易自营品牌','30天无忧退货','48小时快速退款'],
+      servicePolicy: ['网易自营品牌', '30天无忧退货', '48小时快速退款'],
       provideGoods: {},
       newGoods: {},
       hotGoods: {},

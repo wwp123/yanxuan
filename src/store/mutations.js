@@ -3,6 +3,9 @@ const OTHER_GOODS = 'OTHER_GOODS'
 const GOODS_DETAIL = 'GOODS_DETAIL'
 const SEARCH_RESULT = 'SEARCH_RESULT'
 const UPDATE_CART = 'UPDATE_CART'
+const LOGIN = 'LOGIN'
+const LOGOUT = 'LOGOUT'
+const USERNAME = 'USERNAME'
 
 export default {
   [RECOMMEND_GOODS](state, res){
@@ -19,5 +22,17 @@ export default {
   },
   [UPDATE_CART](state, res){
     state.cartGoods = {...res}
+  },
+  [LOGIN](state, data){
+    state.token = data
+    window.sessionStorage.setItem('token', data)
+  },
+  [LOGOUT](state){
+    state.token = null
+    window.sessionStorage.removeItem('token')
+  },
+  [USERNAME](state, data){
+    state.username = data
+    window.sessionStorage.setItem('username', data)
   }
 }

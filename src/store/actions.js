@@ -31,5 +31,14 @@ export default {
 	}) {
     let res = await searchResultData()
 		commit('SEARCH_RESULT', res)
-	}
+	},
+	async UserLogin(data){
+    commit('LOGIN', data)
+  },
+  async UserLogout(){
+    commit('LOGOUT')
+  },
+  async UserName(data){
+    commit('USERNAME', data)
+  }
 }

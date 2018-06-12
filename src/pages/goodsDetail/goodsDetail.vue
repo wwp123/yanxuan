@@ -1,16 +1,6 @@
 <template>
   <div>
-    <header class="topbar">
-      <div class="flex isFixed">
-        <router-link to="/home" class="key"><i class="iconfont icon-shouye"></i></router-link>
-        <router-link to="/home" class="info"><h1 class="logo"></h1></router-link>
-        <router-link to="/search" class="key"><i class="iconfont icon-sousuo"></i></router-link>
-        <router-link to="/cart" class="key">
-          <i class="iconfont icon-gouwuche"></i>
-          <span class="icon-num" v-if="cartGoodsNumber !== 0">{{cartGoodsNumber}}</span>
-        </router-link>
-      </div>
-    </header>
+    <topbar></topbar>
     <main v-show="isShowMain">
       <swiper :slides="goods.imgSrc"></swiper>
       <ul class="characteristic">
@@ -207,12 +197,14 @@
 import {mapState, mapGetters} from 'vuex'
 import swiper from 'components/swiper.vue'
 import gotop from 'components/gotop.vue'
+import topbar from 'components/topbar.vue'
 import { Toast } from 'mint-ui'
 
 export default {
   components: {
     swiper,
-    gotop
+    gotop,
+    topbar
   },
   data() {
     return {

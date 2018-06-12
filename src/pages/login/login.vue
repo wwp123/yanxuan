@@ -1,91 +1,144 @@
 <template>
   <div>
-    <header class="topbar">
-      <div class="flex isFixed">
-        <router-link to="/home" class="key"><i class="iconfont icon-shouye"></i></router-link>
-        <router-link to="/home" class="info"><h1 class="logo"></h1></router-link>
-        <router-link to="/search" class="key"><i class="iconfont icon-sousuo"></i></router-link>
-        <router-link to="/cart" class="key">
-          <i class="iconfont icon-gouwuche"></i>
-          <span class="icon-num" v-if="cartGoodsNumber !== 0">{{cartGoodsNumber}}</span>
-        </router-link>
-      </div>
-    </header>
-    <main>
-      <div class="login-wrap">
-        <div class="login-img"><i class="icon-login"></i></div>
-        <div class="login-con">
-          <router-link to="/login" class="btn btn-full"><i class="iconfont icon-shouji"></i> 手机号码登录</router-link>
-          <a href="" class="btn btn-hollow btn-full"><i class="iconfont icon-youxiang"></i> 邮箱账号登录</a>
-          <p><a href="">手机账号快速注册 <i class="iconfont icon-xiangyou"></i></a></p>
+    <topbar></topbar>
+    <div v-show="!isShowPhoneLogin">
+      <main>
+        <div class="login-wrap">
+          <div class="login-img"><i class="icon-login"></i></div>
+          <div class="login-con">
+            <div class="btn btn-full" @click="isShowPhoneLogin = true"><i class="iconfont icon-shouji"></i> 手机号码登录</div>
+            <div class="btn btn-hollow btn-full"><i class="iconfont icon-youxiang"></i> 邮箱账号登录</div>
+            <p><router-link to="/register">手机账号快速注册 <i class="iconfont icon-xiangyou"></i></router-link></p>
+          </div>
         </div>
+      </main>
+      <footer class="flex quick-login">
+        <div class="key"><i class="iconfont icon-weixin"></i> 微信</div>
+        <div class="key"><i class="iconfont icon-qq"></i> QQ</div>
+        <div class="key"><i class="iconfont icon-weibo"></i> 微博</div>
+      </footer>
+    </div>
+    <!--手机号码登录-->
+    <div class="login-wrap login-box" v-show="isShowPhoneLogin">
+      <div class="login-img"><i class="icon-login"></i></div>
+      <div class="login-con">
+        <form action="">
+          <ul class="flex-list">
+            <li>
+              <div class="info">
+                <input type="number" maxlength="11" placeholder="请输入手机号码" v-model="phoneNumber" @keyup="showClear($event)" @blur="validateNumber()">
+              </div>
+              <div class="key" @click="clear()"><i class="iconfont icon-guanbi" v-show="isShowClear"></i></div>
+            </li>
+            <li>
+              <div class="info">
+                <input :type="inputType" placeholder="请输入密码" v-model="password" @blur="validatePsd()">
+              </div>
+              <div class="key" @click="isShowPassword = !isShowPassword"><i :class="['iconfont',{'icon-bukejian': isShowPassword,'icon-kejian': !isShowPassword}]"></i></div>
+            </li>
+          </ul>
+          <p class="error" v-show="isShowError">{{errorTxt}}</p>
+          <div class="unlogin">
+            <router-link to="/forget" class="fr">忘记密码</router-link>
+            <router-link to="/register">注册账号</router-link>
+          </div>
+          <div class="btn btn-full" @click="checkComplete()">登录</div>
+          <div class="btn btn-hollow btn-full" @click="isShowPhoneLogin = false">其他登录方式</div>
+        </form>
       </div>
-    </main>
-    <footer class="flex quick-login">
-      <div class="key"><i class="iconfont icon-weixin"></i> 微信</div>
-      <div class="key"><i class="iconfont icon-qq"></i> QQ</div>
-      <div class="key"><i class="iconfont icon-weibo"></i> 微博</div>
-    </footer>
-    <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import topbar from 'components/topbar.vue'
+import 'styles/login.styl'
 export default {
+  components: {
+    topbar
+  },
+  data() {
+    return {
+      isShowPhoneLogin: false,  //手机号码登录显示
+      isShowClear: false,       //是否显示清除按钮
+      phoneNumber: '',          //手机号码
+      password: '',             //密码
+      isShowPassword: false,    //密码是否可见
+      errorTxt: '',             //错误提示信息
+      isShowError: false,       //是否显示错误提示信息
+
+    }
+  },
   computed: {
-    ...mapGetters(['cartGoodsNumber'])
+    //密码输入框类型
+    inputType() {
+      if(this.isShowPassword) {
+        return 'text'
+      }else{
+        return 'password'
+      }
+    }
+  },
+  methods: {
+    //input显示清除按钮
+    showClear(event) {
+      if(event.key !== '') {
+        this.isShowClear = true
+      } else {
+        this.isShowClear = false
+      }
+    },
+    //清除input内容
+    clear () {
+      this.phoneNumber = ''
+      if(this.phoneNumber != '') {
+        this.isShowClear = true
+      } else {
+        this.isShowClear = false
+      }
+    },
+    //验证号码
+    validateNumber () {
+      if(this.phoneNumber === '') {
+        this.isShowError = true
+        this.errorTxt = '请输入手机号码'
+      } else {
+        let flag = /^((13|15|18|14|17)+\d{9})$/.test(this.phoneNumber)
+        if(!flag) {
+          this.isShowError = true
+          this.errorTxt = '手机号码格式不正确'
+        } else {
+          this.isShowError = false
+        }
+      }
+    },
+    //验证密码
+    validatePsd () {
+      if(this.password === '') {
+        this.isShowError = true
+        this.errorTxt = '请输入密码'
+      } else {
+        let flag =  /^\w{6,18}$/.test(this.password)
+        if(!flag) {
+          this.isShowError = true
+          this.errorTxt = '密码不能少于6位'
+        } else {
+          this.isShowError = false
+        }
+      }
+    },
+    //判断是否填写完整
+    checkComplete () {
+      console.log('验证')
+    }
+  },
+  watch: {
+    //监听手机号码
+    phoneNumber: {
+      handler () {
+      },
+      deep: true
+    }
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-  .icon-login {
-    display inline-block
-    width 5.7rem
-    height 1.9rem
-    background-image url(../../../src/assets/images/login.png) 
-    background-size 100% 100%
-  }
-  .login-img {
-    padding 3.4rem 0
-    text-align center  
-  }
-  .login-con {
-    padding 0 .75rem  
-    .btn {
-      line-height 2rem
-      border-radius 2px
-      margin-bottom .75rem  
-      .iconfont {
-        font-size .9rem  
-        position relative
-        top 2px
-      }  
-    }
-    p {
-      text-align center
-      font-size .6rem
-      .iconfont {
-        font-size .6rem  
-      }
-    }
-  }
-  .quick-login {
-    position absolute
-    left 0
-    bottom 1.7rem 
-    width 100%
-    color #7f7f7f
-    font-size .6rem
-    .key {
-      padding 0 .75rem
-      &:not(:first-child) {
-        border-left 1px solid #979797
-      } 
-      .iconfont {
-        font-size .75rem  
-      }
-    }
-  }
-</style>

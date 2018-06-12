@@ -37,11 +37,11 @@ export default {
     showMore: false
   },
   filters: {
-    //格式化价格
-    priceFomat(price,yuan){
-      if(typeof yuan !== 'undefined'){
+    // 格式化价格
+    priceFomat (price, yuan) {
+      if (typeof yuan !== 'undefined') {
         return price + yuan
-      }else{
+      } else {
         return '￥' + price
       }
     }
@@ -66,9 +66,9 @@ export default {
         p {
           overflow hidden
           white-space nowrap
-          text-overflow ellipsis  
+          text-overflow ellipsis
           margin-bottom .25rem
-        }  
+        }
       }
     }
   }
@@ -81,7 +81,7 @@ export default {
       padding 0 .2rem
       margin-bottom .4rem
       box-sizing border-box
-    }  
+    }
   }
   .flex-swiper {
     display flex
@@ -94,9 +94,9 @@ export default {
         padding-right .5rem
       }
       .txt {
-        margin-top .5rem  
+        margin-top .5rem
       }
-    } 
+    }
     &.topic-goods {
       li {
         flex 0 0 12.3rem
@@ -107,7 +107,7 @@ export default {
           border-radius 4px
         }
         .name {
-          padding-right 3.5rem  
+          padding-right 3.5rem
         }
         .price {
           position absolute
@@ -115,8 +115,8 @@ export default {
           top 0
           margin-top 0
         }
-      }  
-    } 
+      }
+    }
   }
   .txt-absolute .txt {
     position absolute !important

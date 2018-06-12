@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 import home from 'pages/home/home.vue'
 import shop from 'pages/shop/shop.vue'
@@ -12,6 +13,8 @@ import recommend from 'pages/home/children/recommend.vue'
 import other from 'pages/home/children/other.vue'
 import goodsDetail from 'pages/goodsDetail/goodsDetail.vue'
 import login from 'pages/login/login.vue'
+import register from 'pages/login/children/register.vue'
+import forget from 'pages/login/children/forget.vue'
 
 Vue.use(VueRouter)
 
@@ -26,8 +29,7 @@ const router = new VueRouter({
         {
           //推荐
             path: '',
-            component: recommend,
-            meta: { keepAlive: true }
+            component: recommend
         },
         {
           //其他商品
@@ -54,19 +56,20 @@ const router = new VueRouter({
     {
       //个人中心
       path: '/center',
-      component: center
+      component: center,
+      meta: { 
+        requireAuth: true
+      }
     },
     {
       //搜索页
       path: '/search',
-      component: search,
-      children: [
-        {
-          //搜索结果页
-          path: '/searchResult',
-          component: searchResult
-        }
-      ]
+      component: search
+    },
+    {
+      //搜索结果页
+      path: '/searchResult',
+      component: searchResult
     },
     {
       //商品详情页
@@ -77,9 +80,32 @@ const router = new VueRouter({
       //登录
       path: '/login',
       component: login
+    },
+    {
+      //注册
+      path: '/register',
+      component: register
+    },
+    {
+      //忘记密码
+      path: '/forget',
+      component: forget
     }
   ]
 })
 router.push('/home')
+
+router.beforeEach((to,from,next) => {       
+  // 对路由进行验证     
+  if(to.matched.some(r => r.meta.requireAuth)){ 
+    if(store.state.token) { // 登录       
+      next()   
+    }else{  // 未登录
+    　next({path:'/login'})
+    } 
+  }else{ 
+  　next() 
+  } 
+})
 
 export default router

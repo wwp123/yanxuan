@@ -25,13 +25,12 @@
         <router-link :to="{path:'/searchResult',query:{keyword:tag}}" v-for="(tag,index) in this.$store.state.tagsHot" :key="index" class="hot-tag"><span class="tag tag-hollow">{{tag}}</span></router-link>
       </div>
     </div>
-    <router-view class="cover"></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       isShowClear: false,
       searchVal: '',
@@ -52,34 +51,34 @@ export default {
         : this.$router.push('/')
     },
     //input显示清除按钮
-    showClear(event) {
-      if(event.key != ''){
+    showClear (event) {
+      if(event.key !== '') {
         this.isShowClear = true
         this.isShowSuggestion = true
-      }else {
+      } else {
         this.isShowClear = false
         this.isShowSuggestion = false
       }
     },
     //清除input内容
-    clear() {
+    clear () {
       this.searchVal = ''
       if(this.searchVal != '') {
         this.isShowClear = true
         this.isShowSuggestion = true
-      }else {
+      } else {
         this.isShowClear = false
         this.isShowSuggestion = false
       }
     },
     //搜索：添加历史记录并跳转
-    search(event) {
+    search (event) {
       this.isShowSuggestion = false
-      if(event.key === 'Enter'){
+      if(event.key === 'Enter') {
         if(this.$store.state.tagsHistory.indexOf(this.searchVal.trim()) === -1){
           this.$store.state.tagsHistory.unshift(this.searchVal.trim())
         }
-      }else{
+      } else {
         if(this.$store.state.tagsHistory.indexOf(event.target.innerText) === -1){
           this.$store.state.tagsHistory.unshift(event.target.innerText)
         }
